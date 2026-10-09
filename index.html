@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Tasks</h1>
+    
+    <div class="input-container">
+      <input type="text" placeholder="Add a new task">
+      <button>Add Task</button>
+    </div>
+
+    <ul>
+      <li>Learn React</li>
+      <li>Build Task Manager</li>
+      <li>Deploy to Vercel</li>
+    </ul>
+  </div>
+</body>
+</html>
+
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #6a1b9a;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.95rem;
+  background-color: #c5cae9;
+  color: #333333;
+  outline: none;
+}
+
+input[type="text"]::placeholder {
+  color: #4f4f4f;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #cddc39;
+  border: none;
+  border-radius: 6px;
+  color: #212121;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  background-color: #c0ca33;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+li {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+
+const input = document.querySelector("input");
+const form = document.querySelector("form");
+const list = document.querySelector("ul");
+
+// Add a new task
+function addTask(event) {
+  // Prevent the page from reloading
+  event.preventDefault();
+
+  // Get the text entered by the user
+  const title = input.value.trim();
+
+  // Prevent empty tasks
+  if (title === "") {
+    return;
+  }
+
+  // Create a new list item
+  const li = document.createElement("li");
+
+  // Set the task text
+  li.textContent = title;
+
+  // Add the task to the list
+  list.appendChild(li);
+
+  // Clear the input field
+  input.value = "";
+
+  // Focus the input again
+  input.focus();
+}
+
+// Listen for form submission
+form.addEventListener("submit", addTask);
